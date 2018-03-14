@@ -1,4 +1,5 @@
 <template>
+  <div class="row mx-0">
   <header id="header">
     <div class="logo">
       <router-link to="/">Vue - Complete Guide</router-link>
@@ -20,6 +21,7 @@
       </ul>
     </nav>
   </header>
+  </div>
 </template>
 
 <script>
@@ -55,7 +57,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #521751;
-    padding: 0 20px;
+    padding: 15px 20px;
 
   //   position: absolute;
   //   top: 0;

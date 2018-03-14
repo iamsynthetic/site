@@ -1,18 +1,9 @@
 <template>
-  <!-- <div id="app">
-    <app-header />
-    <router-view></router-view>
-  </div> -->
-
-  <div class="container-fluid">
+    <div class="container-fluid px-0 h-100">
         <app-header></app-header>
-        <div class="row">
-            <div class="col-xs-12">
-                <transition name="slide" mode="out-in">
-                    <router-view></router-view>
-                </transition>
-            </div>
-        </div>
+        <transition name="slide" mode="out-in">
+            <router-view></router-view>
+        </transition>
     </div>
 </template>
 
@@ -38,6 +29,7 @@
     /* margin: 0; */
     /* padding: 30px; */
     padding:0px;
+    height: 100%;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
   .slide-enter-active {

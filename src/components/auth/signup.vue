@@ -1,4 +1,6 @@
 <template>
+
+  <div class="container-fluid">
   <div id="signup">
     <div class="signup-form">
       <form @submit.prevent="onSubmit">
@@ -81,6 +83,7 @@
         </div>
       </form>
     </div>
+  </div>
   </div>
 </template>
 
