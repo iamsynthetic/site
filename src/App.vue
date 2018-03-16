@@ -26,12 +26,14 @@
     @import '../node_modules/bootstrap/scss/bootstrap.scss';
 
   body, html {
-    /* margin: 0; */
-    /* padding: 30px; */
     padding:0px;
     height: 100%;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #f5f5f5;
+    line-height: 2;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
   }
+
   .slide-enter-active {
       animation: slide-in 200ms ease-out forwards;
   }

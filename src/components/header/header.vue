@@ -16,7 +16,7 @@
           <router-link to="/dashboard">Dashboard</router-link>
         </li>
         <li v-if="auth">
-          <button @click="onLogout" class="logout">Logout</button>
+            <button @click="onLogout" class="logout">Logout</button>
         </li>
       </ul>
     </nav>
@@ -56,15 +56,8 @@
     flex-flow: row;
     justify-content: space-between;
     align-items: center;
-    background-color: #521751;
+    background-color: #ffffff;
     padding: 15px 20px;
-
-  //   position: absolute;
-  //   top: 0;
-  //   right: 0;
-  //   width: 100% !important;
-  //   left: 0;
-  //   z-index: 20;
   }
 
   #header .navbar {
@@ -80,13 +73,14 @@
 
 
   .logo {
+    font-family: 'Open Sans', sans-serif;
     font-weight: bold;
-    color: white;
+    color: #000000;
   }
 
   .logo a {
     text-decoration: none;
-    color: white;
+    color: #000000;
   }
 
   nav {
@@ -109,7 +103,7 @@
 
   li a {
     text-decoration: none;
-    color: white;
+    color: #000000;
   }
 
   li a:hover,
@@ -118,11 +112,21 @@
     color: #fa923f;
   }
 
+  //ELEMENTS
+  .button-container {
+    padding: 100px 0;
+    text-align: center;
+  }
+
   .logout {
-    background-color: transparent;
     border: none;
     font: inherit;
     color: white;
     cursor: pointer;
+    background-color:#ff5063;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    
   }
 </style>
