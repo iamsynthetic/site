@@ -7,16 +7,16 @@
     <nav>
       <ul>
         <li v-if="!auth">
-          <router-link to="/signup">Sign Up</router-link>
+          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="header-button" to="/signup">Sign Up</router-link>
         </li>
         <li v-if="!auth">
-          <router-link to="/signin">Sign In</router-link>
+          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="header-button" to="/signin">Sign In</router-link>
         </li>
         <li v-if="auth">
-          <router-link to="/dashboard">Dashboard</router-link>
+          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="header-button" to="/dashboard">Dashboard</router-link>
         </li>
         <li v-if="auth">
-            <button @click="onLogout" class="logout">Logout</button>
+            <button @mouseover="mouseoverButton" @mouseout="mouseoutButton" @click="onLogout" class="logout">Logout</button>
         </li>
       </ul>
     </nav>
@@ -25,10 +25,15 @@
 </template>
 
 <script>
+  // import { tween, styler } from 'popmotion';
+  import { TweenMax } from 'gsap';
+
   export default {
     data(){
       return {
-        isDropdownOpen: false
+        isDropdownOpen: false,
+        red: '#ff5063',
+        black: '#000000'
       }
     },
     computed: {
@@ -38,7 +43,19 @@
     },
     methods: {
       onLogout() {
-        this.$store.dispatch('logout')
+        this.$store.dispatch('logout');
+      },
+      mouseoverButton(e){
+        TweenMax.to(e.target, .2, {backgroundColor:this.black, ease:Power2.easeIn});
+      },
+      mouseoutButton(e){
+        TweenMax.to(e.target, .2, {backgroundColor:this.red, ease:Power2.easeOut});
+      },
+      mouseoverTextlink(e){
+        TweenMax.to(e.target, .2, {color:this.red, ease:Power2.easeOut});
+      },
+      mouseoutTextlink(e){
+        TweenMax.to(e.target, .2, {color:this.black, ease:Power2.easeIn});
       }
     }
   }
@@ -56,7 +73,7 @@
     flex-flow: row;
     justify-content: space-between;
     align-items: center;
-    background-color: #ffffff;
+    background-color: $white;
     padding: 15px 20px;
   }
 
@@ -109,7 +126,14 @@
   li a:hover,
   li a:active,
   li a.router-link-active {
-    color: #fa923f;
+    //color: #fa923f;
+    text-decoration:none;
+    color:#000000;
+  }
+
+  .header-button{
+    cursor: pointer;
+    color:black;
   }
 
   //ELEMENTS

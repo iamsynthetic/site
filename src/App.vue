@@ -28,7 +28,7 @@
   body, html {
     padding:0px;
     height: 100%;
-    background-color: #f5f5f5;
+    background-color: $base_white;
     line-height: 2;
     font-size: 12px;
     font-family: 'Open Sans', sans-serif;
