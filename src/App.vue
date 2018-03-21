@@ -1,18 +1,24 @@
 <template>
-    <div class="container-fluid px-0 h-100">
-        <app-header></app-header>
-        <transition name="slide" mode="out-in">
-            <router-view></router-view>
-        </transition>
+    <div class="container-fluid px-0 h-100 site-wrapper">
+        <div class="site-wrapper-inner">
+            <app-header class="masthead clearfix"></app-header>
+            <transition name="slide" mode="out-in" class="content-wrapper">
+                <router-view></router-view>
+            </transition>
+            <app-footer class="footer clearfix"></app-footer>
+        </div>
     </div>
 </template>
 
 <script>
   import Header from './components/header/header.vue'
+  import Footer from './components/footer/footer.vue'
+
   export default {
     name: 'app',
     components: {
-      'appHeader': Header
+      'appHeader': Header,
+      'appFooter': Footer
     },
     created () {
       this.$store.dispatch('tryAutoLogin')
@@ -33,6 +39,33 @@
     font-size: 12px;
     font-family: 'Open Sans', sans-serif;
   }
+  .site-wrapper {
+      display:table;
+      width:100%;
+      height:100%;
+  }
+  .site-wrapper-inner{
+      //display:table-cell;
+      //vertical-align:middle;
+      margin:auto;
+      margin-top:calc(20vh);
+  }
+  .masthead{
+      width:100%;
+      position: fixed;
+      top: 0;
+  }
+  .footer{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 60px;
+      line-height: 60px;
+  }
+  .content-wrapper{
+      vertical-align: middle;
+  }
+
 
   .slide-enter-active {
       animation: slide-in 200ms ease-out forwards;

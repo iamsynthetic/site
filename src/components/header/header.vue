@@ -1,27 +1,88 @@
 <template>
   <div class="row mx-0">
-  <header id="header">
-    <div class="logo">
+    <header id="header">
+    <!-- <div class="logo">
       <router-link to="/">Vue - Complete Guide</router-link>
-    </div>
-    <nav>
+    </div> -->
+    <!-- <nav>
       <ul>
         <li v-if="!auth">
-          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="header-button" to="/signup">Sign Up</router-link>
+          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/signup">Sign Up</router-link>
         </li>
         <li v-if="!auth">
-          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="header-button" to="/signin">Sign In</router-link>
+          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/signin">Sign In</router-link>
         </li>
         <li v-if="auth">
-          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="header-button" to="/dashboard">Dashboard</router-link>
+          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/home">Home</router-link>
+        </li>
+        <li v-if="auth">
+          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/about">About</router-link>
+        </li>
+        <li v-if="auth">
+          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/work">Work</router-link>
+        </li>
+        <li v-if="auth">
+          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/dashboard">Dashboard</router-link>
         </li>
         <li v-if="auth">
             <button @mouseover="mouseoverButton" @mouseout="mouseoutButton" @click="onLogout" class="logout">Logout</button>
         </li>
       </ul>
-    </nav>
-  </header>
+    </nav> -->
+
+    <!-- <nav class="navbar navbar-toggleable-md">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <ul>
+        <li v-if="!auth">
+          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/signup">Sign Up</router-link>
+        </li>
+        <li v-if="!auth">
+          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/signin">Sign In</router-link>
+        </li>
+        <li v-if="auth">
+          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/home">Home</router-link>
+        </li>
+        <li v-if="auth">
+          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/about">About</router-link>
+        </li>
+        <li v-if="auth">
+          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/work">Work</router-link>
+        </li>
+        <li v-if="auth">
+          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/dashboard">Dashboard</router-link>
+        </li>
+        <li v-if="auth">
+            <button @mouseover="mouseoverButton" @mouseout="mouseoutButton" @click="onLogout" class="logout">Logout</button>
+        </li>
+      </ul>
+    </nav> -->
+      <b-navbar class="bnavbar" toggleable>
+        <b-navbar-brand>BootstrapVue</b-navbar-brand>
+        <b-navbar-toggle target="nav_dropdown_collapse"></b-navbar-toggle>
+        <b-collapse is-nav id="nav_dropdown_collapse">
+          <b-navbar-nav ml-auto>
+            <b-nav-item href="#">Home</b-nav-item>
+            <b-nav-item href="#">Link</b-nav-item>
+            <!-- Navbar dropdowns -->
+            <b-nav-item-dropdown text="Lang" right>
+              <b-dropdown-item href="#">EN</b-dropdown-item>
+              <b-dropdown-item href="#">ES</b-dropdown-item>
+              <b-dropdown-item href="#">RU</b-dropdown-item>
+              <b-dropdown-item href="#">FA</b-dropdown-item>
+            </b-nav-item-dropdown>
+            <b-nav-item-dropdown text="User" right>
+              <b-dropdown-item href="#">Account</b-dropdown-item>
+              <b-dropdown-item href="#">Settings</b-dropdown-item>
+            </b-nav-item-dropdown>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar>
+    </header>
   </div>
+
+  
 </template>
 
 <script>
@@ -66,70 +127,99 @@
   @import '../../styles/custom-bootstrap.scss';
   @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
+  .router-link-active,
+  {
+    color: $red;
+  }
+
+  .active {
+    color:$purple;
+  }
+
   #header {
     height: 56px;
     width:100%;
     display: flex;
     flex-flow: row;
     justify-content: space-between;
-    align-items: center;
+    // align-items: center;
     background-color: $white;
     padding: 15px 20px;
   }
 
-  #header .navbar {
-    padding-right: 15px;
-    padding-left: 15px;
+  .bnavbar {
+    background-color: $white;
+    width:100%;
+  }
+  .b-nav-item {
+    color: $red;
+  }
+  #nav_dropdown_collapse {
+    //margin-top:200px;
+    background-color:$white;
+  }
+
+  .navbar-inverse {
     width: 100% !important;
-}
-
-.navbar-inverse {
-  width: 100% !important;
-  border-radius: 0;
-}
-
-
-  .logo {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
-    color: #000000;
+    border-radius: 0;
   }
 
-  .logo a {
-    text-decoration: none;
-    color: #000000;
-  }
+  // .navbar {
+  //   padding-right: 15px;
+  //   padding-left: 15px;
+  //   width: 100% !important;
+  // }
 
-  nav {
-    height: 100%;
-  }
+  // .bg-info {
+  //   background-color: $white !important;
+  // }
+  // .navbar-inverse {
+  //   width: 100% !important;
+  //   border-radius: 0;
+  // }
 
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    display: flex;
-    flex-flow: row;
-    align-items: center;
-  }
 
-  li {
-    margin: 0 16px;
-  }
+  // .logo {
+  //   font-family: 'Open Sans', sans-serif;
+  //   font-weight: bold;
+  //   color: $black;
+  // }
 
-  li a {
-    text-decoration: none;
-    color: #000000;
-  }
+  // .logo a {
+  //   text-decoration: none;
+  //   color: $black;
+  // }
 
-  li a:hover,
-  li a:active,
-  li a.router-link-active {
-    //color: #fa923f;
-    text-decoration:none;
-    color:#000000;
-  }
+  // nav {
+  //   height: 100%;
+  // }
+
+  // ul {
+  //   list-style: none;
+  //   margin: 0;
+  //   padding: 0;
+  //   height: 100%;
+  //   display: flex;
+  //   flex-flow: row;
+  //   align-items: center;
+  // }
+
+  // li {
+  //   margin: 0 16px;
+  // }
+
+  // li a {
+  //   text-decoration: none;
+  //   color: $black;
+  // }
+
+  // li a:hover,
+  // li a:active,
+  // li a.router-link-active {
+  //   //color: #fa923f;
+  //   text-decoration:none;
+  //   color:#000000;
+  // }
 
   .header-button{
     cursor: pointer;

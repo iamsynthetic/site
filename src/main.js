@@ -5,6 +5,9 @@ import Vuelidate from 'vuelidate'
 import router from './router'
 import store from './store'
 
+import BootstrapVue from 'bootstrap-vue'
+
+Vue.use(BootstrapVue);
 Vue.use(Vuelidate)
 
 axios.defaults.baseURL = 'https://vuejs-axios-ee86c.firebaseio.com/'

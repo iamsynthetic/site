@@ -7,6 +7,7 @@ import WelcomePage from './components/welcome/welcome.vue'
 import DashboardPage from './components/dashboard/dashboard.vue'
 import SignupPage from './components/auth/signup.vue'
 import SigninPage from './components/auth/signin.vue'
+import HomePage from './components/home/home.vue'
 
 Vue.use(VueRouter)
 
@@ -17,6 +18,17 @@ const routes = [
   {
     path: '/dashboard',
     component: DashboardPage,
+    beforeEnter (to, from, next) {
+      if (store.state.idToken) {
+        next()
+      } else {
+        next('/signin')
+      }
+    }
+  },
+  {
+    path: '/home',
+    component: HomePage,
     beforeEnter (to, from, next) {
       if (store.state.idToken) {
         next()
