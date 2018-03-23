@@ -15,6 +15,14 @@
           <p v-if="!$v.email.email">Please provide a valid email address</p>
           <p v-if="!$v.email.required">this field must not be empty</p>
         </div>
+        <div class="input" :class="{invalid: $v.nickname.$error}">
+            <label for="nickname">Your Nickname</label>
+            <input 
+                  type="nickname"
+                  id="nickname"
+                  @blur="v.nickname.$touch()"
+                  v-model="nickname">
+        </div>
         <div class="input" :class="{invalid: $v.age.$error}">
           <label for="age">Your Age</label>
           <input
@@ -43,10 +51,11 @@
         <div class="input">
           <label for="country">Country</label>
           <select id="country" v-model="country">
-            <option value="usa">USA</option>
+            <option value="canada">Canada</option>
+            <option value="germany">Germany</option>
             <option value="india">India</option>
             <option value="uk">UK</option>
-            <option value="germany">Germany</option>
+            <option value="usa">USA</option>
           </select>
         </div>
         <div class="hobbies">
@@ -88,13 +97,14 @@
 </template>
 
 <script>
-  import {required, email, numeric, minValue, minLength, sameAs, requiredUnless} from 'vuelidate/lib/validators'
+  import {required, email, numeric, minValue, minLength, maxLength, sameAs, requiredUnless} from 'vuelidate/lib/validators'
   import axios from 'axios'
 
   export default {
     data () {
       return {
         email: '',
+        nickname: '',
         age: null,
         password: '',
         confirmPassword: '',
@@ -115,6 +125,11 @@
             })
         }
       },
+      nickname: {
+        required,
+        minLen: minLength(2),
+        maxLen: maxLength(20)
+      },
       age: {
         required,
         numeric,
@@ -128,7 +143,7 @@
         // one option -> sameAs: sameAs('password')
         //bottom is good to check other things
         sameAs: sameAs(vm => {
-          return vm.password + 'b'
+          return vm.password
         })
       },
       terms: {
@@ -162,6 +177,7 @@
       onSubmit () {
         const formData = {
           email: this.email,
+          nickname: this.nickname,
           age: this.age,
           password: this.password,
           confirmPassword: this.confirmPassword,

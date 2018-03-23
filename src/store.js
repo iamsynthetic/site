@@ -52,7 +52,8 @@ export default new Vuex.Store({
           dispatch('storeUser', authData)
           dispatch('setLogoutTimer', res.data.expiresIn)
         })
-        .catch(error => console.log(error))
+        .catch(error => console.log(error)),
+        console.log('signup - email is: ' + email)
     },
     login ({commit, dispatch}, authData) {
       axios.post('/verifyPassword?key=AIzaSyBKqm88HFnpy_Mud8wML4GuCHfd3_Il7Sw', {
@@ -128,7 +129,9 @@ export default new Vuex.Store({
   },
   getters: {
     user (state) {
+      console.log('store - getters - user - state - user is: ' + state.user)
       return state.user
+      //return state.userId
     },
     isAuthenticated (state) {
       return state.idToken !== null

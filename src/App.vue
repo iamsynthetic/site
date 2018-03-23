@@ -2,8 +2,8 @@
     <div class="container-fluid px-0 h-100 site-wrapper">
         <div class="site-wrapper-inner">
             <app-header class="masthead clearfix"></app-header>
-            <transition name="slide" mode="out-in" class="content-wrapper">
-                <router-view></router-view>
+            <transition name="slide" mode="out-in">
+                <router-view class="content-wrapper"></router-view>
             </transition>
             <app-footer class="footer clearfix"></app-footer>
         </div>
@@ -48,7 +48,7 @@
       //display:table-cell;
       //vertical-align:middle;
       margin:auto;
-      margin-top:calc(20vh);
+      //margin-top:calc(20vh);
   }
   .masthead{
       width:100%;
@@ -64,6 +64,9 @@
   }
   .content-wrapper{
       vertical-align: middle;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
   }
 
 

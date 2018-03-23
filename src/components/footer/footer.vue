@@ -1,34 +1,9 @@
 <template>
   <div class="row mx-0">
   <header id="footer">
-    <div class="logo">
-      <router-link to="/">Vue - Complete Guide</router-link>
+    <div v-if="auth">
+      <div class="logout">Welcome {{ user.nickname }}</div>
     </div>
-    <nav>
-      <ul>
-        <li v-if="!auth">
-          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/signup">Sign Up</router-link>
-        </li>
-        <li v-if="!auth">
-          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/signin">Sign In</router-link>
-        </li>
-        <li v-if="auth">
-          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/home">Home</router-link>
-        </li>
-        <li v-if="auth">
-          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/about">About</router-link>
-        </li>
-        <li v-if="auth">
-          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/work">Work</router-link>
-        </li>
-        <li v-if="auth">
-          <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="header-button" to="/dashboard">Dashboard</router-link>
-        </li>
-        <li v-if="auth">
-            <button @mouseover="mouseoverButton" @mouseout="mouseoutButton" @click="onLogout" class="logout">Logout</button>
-        </li>
-      </ul>
-    </nav>
   </header>
   </div>
 </template>
@@ -48,23 +23,10 @@
     computed: {
       auth () {
         return this.$store.getters.isAuthenticated
-      }
-    },
-    methods: {
-      onLogout() {
-        this.$store.dispatch('logout');
       },
-      mouseoverButton(e){
-        TweenMax.to(e.target, .2, {backgroundColor:this.black, ease:Power2.easeIn});
-      },
-      mouseoutButton(e){
-        TweenMax.to(e.target, .2, {backgroundColor:this.red, ease:Power2.easeOut});
-      },
-      mouseoverTextlink(e){
-        TweenMax.to(e.target, .2, {color:this.red, ease:Power2.easeOut});
-      },
-      mouseoutTextlink(e){
-        TweenMax.to(e.target, .2, {color:this.black, ease:Power2.easeIn});
+      user (){
+        console.log('user')
+        return this.$store.getters.user
       }
     }
   }
@@ -158,17 +120,5 @@
   .button-container {
     padding: 100px 0;
     text-align: center;
-  }
-
-  .logout {
-    border: none;
-    font: inherit;
-    color: white;
-    cursor: pointer;
-    background-color:#ff5063;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    
   }
 </style>

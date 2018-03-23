@@ -4,8 +4,10 @@
       <h1>That's the dashboard!</h1>
       <p>You should only get here if you're authenticated!</p>
       <p v-if="email">Your email address: {{ email }}</p>
+      <p v-if="country">Your country: {{ country }}</p>
+      <p v-if="nickname">Your nickname: {{ nickname }}</p>
     </div>
-    <div class="container-fluid">
+    <!-- <div class="container-fluid">
       <div class="row">
         <div class="col-12 col-lg-5 px-0 fill grey-cell">
           <img class="blah" alt="responsive image">
@@ -29,7 +31,7 @@
           col-12 col-lg-1
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -40,6 +42,12 @@
     computed: {
       email () {
         return !this.$store.getters.user ? false : this.$store.getters.user.email
+      },
+      country(){
+        return this.$store.getters.user.country
+      },
+      nickname(){
+        return this.$store.getters.user.nickname
       }
     },
     created () {
