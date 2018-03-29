@@ -10,19 +10,19 @@
               <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="nav-link header-button" to="/signin">Sign In</router-link>
             </li>
             <li v-if="!auth">
-              <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="nav-link header-button" to="/signup">Sign Up</router-link>
+              <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="nav-link header-button" to="/signup">Sign Up</router-link>
             </li>
             <li v-if="auth">
-              <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="nav-link header-button" to="/home">Home</router-link>
+              <router-link @click="activate(1)" @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="nav-link header-button" to="/home">Home</router-link>
             </li>
             <li v-if="auth">
-              <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="nav-link header-button" to="/about">About</router-link>
+              <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="nav-link header-button" to="/about">About</router-link>
             </li>
             <li v-if="auth">
-              <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="nav-link header-button" to="/work">Work</router-link>
+              <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="nav-link header-button" to="/work">Work</router-link>
             </li>
             <li v-if="auth">
-              <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" active-class="active" class="nav-link header-button" to="/dashboard">Dashboard</router-link>
+              <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="nav-link header-button" to="/dashboard">Dashboard</router-link>
             </li>
             <li v-if="auth">
               <button @mouseover="mouseoverButton" @mouseout="mouseoutButton" @click="onLogout" class="logout nav-link">Logout</button>
@@ -45,7 +45,8 @@
       return {
         isDropdownOpen: false,
         red: '#ff5063',
-        black: '#000000'
+        black: '#000000',
+        white: '#ffffff'
       }
     },
     computed: {
@@ -58,7 +59,7 @@
         this.$store.dispatch('logout');
       },
       mouseoverButton(e){
-        TweenMax.to(e.target, .2, {backgroundColor:this.black, ease:Power2.easeIn});
+        TweenMax.to(e.target, .2, {backgroundColor:this.black, color:this.white, ease:Power2.easeIn});
       },
       mouseoutButton(e){
         TweenMax.to(e.target, .2, {backgroundColor:this.red, ease:Power2.easeOut});
@@ -77,15 +78,6 @@
 
   @import '../../styles/custom-bootstrap.scss';
   @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
-
-  .router-link-active,
-  {
-    color: $red;
-  }
-
-  .active {
-    color:$purple;
-  }
 
   #header {
     height: 56px;
@@ -106,6 +98,11 @@
   .navbar-light .navbar-nav .nav-link{
     text-decoration:none;
     color: $black;
+  }
+
+  .navbar-nav a.router-link-active {
+    font-weight: bold;
+    color: $red !important;
   }
 
   .navbar-light .navbar-nav .logout{

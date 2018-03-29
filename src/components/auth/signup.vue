@@ -187,6 +187,7 @@
         }
         console.log(formData)
         this.$store.dispatch('signup', formData)
+        router.push('/dashboard')
       }
     }
   }

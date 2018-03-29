@@ -2,7 +2,7 @@
   <div class="row mx-0">
   <header id="footer">
     <div v-if="auth">
-      <div class="logout">Welcome {{ user.nickname }}</div>
+      <div class="logout">Welcome <span class="nickname"> {{ user.nickname }}</span></div>
     </div>
   </header>
   </div>
@@ -120,5 +120,11 @@
   .button-container {
     padding: 100px 0;
     text-align: center;
+  }
+
+  .nickname{
+    font-weight: bold;
+    color: $green;
+    
   }
 </style>
