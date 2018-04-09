@@ -3,11 +3,18 @@
     <h1>WORK PAGE</h1>
     <div class="cta">
       <router-link @mouseover.native="mouseoverButton" @mouseout.native="mouseoutButton" class="tactile_button" to="/">button</router-link>
+      <completed-todos class="completed-todo">completed</completed-todos>
+      <get-todo class="get-todo">get</get-todo>
+      <current-todos class="current-todo">current</current-todos>
     </div>
   </div>
 </template>
 
 <script>
+import GetTodo from './todo/GetTodo.vue'
+import CurrentTodo from './todo/CurrentTodo.vue'
+import CompletedTodos from './todo/CompletedTodos.vue'
+
 export default {
   data(){
     return {
@@ -22,6 +29,11 @@ export default {
       mouseoutButton(e){
         TweenMax.to(e.target, .2, {backgroundColor:this.red, ease:Power2.easeOut});
       }
+  },
+  components:{
+    'GetTodo': GetTodo,
+    'CompletedTodos': CompletedTodos,
+    'CurrentTodos': CurrentTodo
   }
 }
 </script>

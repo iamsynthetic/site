@@ -8,6 +8,7 @@ import DashboardPage from './components/dashboard/dashboard.vue'
 import SignupPage from './components/auth/signup.vue'
 import SigninPage from './components/auth/signin.vue'
 import HomePage from './components/home/home.vue'
+import WorkPage from './components/work/work.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,7 @@ const routes = [
   { path: '/', component: WelcomePage },
   { path: '/signup', component: SignupPage },
   { path: '/signin', component: SigninPage },
+  { path: '/work', component: WorkPage},
   {
     path: '/dashboard',
     component: DashboardPage,

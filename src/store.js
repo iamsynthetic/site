@@ -180,6 +180,9 @@ export default new Vuex.Store({
     },
     isAuthenticated (state) {
       return state.idToken !== null
-    }
+    },
+    newTodo: state => state.newTodo,
+    todos: state => state.todos.filter((todo) => {return !todo.completed}),
+    completedTodos: state => state.todos.filter((todo) => {return todo.completed})
   }
 })

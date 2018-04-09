@@ -2,14 +2,16 @@ import Vue from 'vue'
 import App from './App.vue'
 import axios from 'axios'
 import Vuelidate from 'vuelidate'
+import Sortable from 'vue-sortable'
 import router from './router'
 import firebase from 'firebase'
 import store from './store'
 
 import BootstrapVue from 'bootstrap-vue'
 
-Vue.use(BootstrapVue);
+Vue.use(BootstrapVue)
 Vue.use(Vuelidate)
+Vue.use(Sortable)
 
 axios.defaults.baseURL = 'https://vuejs-axios-ee86c.firebaseio.com/'
 // axios.defaults.headers.common['Authorization'] = 'fasfdsa'
