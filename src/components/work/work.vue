@@ -1,19 +1,15 @@
 <template>
-  <div>
+  <div id="work" class="work-container">
     <h1>WORK PAGE</h1>
     <div class="cta">
       <router-link @mouseover.native="mouseoverButton" @mouseout.native="mouseoutButton" class="tactile_button" to="/">button</router-link>
-      <completed-todos class="completed-todo">completed</completed-todos>
-      <get-todo class="get-todo">get</get-todo>
-      <current-todos class="current-todo">current</current-todos>
     </div>
+    <todo>completed</todo>
   </div>
 </template>
 
 <script>
-import GetTodo from './todo/GetTodo.vue'
-import CurrentTodo from './todo/CurrentTodo.vue'
-import CompletedTodos from './todo/CompletedTodos.vue'
+import Todo from './todo/Todo.vue'
 
 export default {
   data(){
@@ -31,9 +27,7 @@ export default {
       }
   },
   components:{
-    'GetTodo': GetTodo,
-    'CompletedTodos': CompletedTodos,
-    'CurrentTodos': CurrentTodo
+    'Todo': Todo
   }
 }
 </script>
@@ -43,9 +37,10 @@ export default {
   @import '../../styles/custom-bootstrap.scss';
   @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
-  #welcome {
-    width: 80%;
+  .work-container {
+    width: 100%;
     margin: auto;
+    background-color:$gray-dark;
   }
 
   h1 {
@@ -54,7 +49,7 @@ export default {
 
   .cta {
     width: 300px;
-    margin: auto;
+    margin:10px auto 10px auto;
     text-align: center;
   }
 

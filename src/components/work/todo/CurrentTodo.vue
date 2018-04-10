@@ -68,6 +68,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+    @import '../../../styles/custom-bootstrap.scss';
+    @import '../../../../node_modules/bootstrap/scss/bootstrap.scss';
+
     .btn-group{
         float: right;
     },
