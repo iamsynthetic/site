@@ -183,6 +183,7 @@ export default new Vuex.Store({
     },
     newTodo: state => state.newTodo,
     todos: state => state.todos.filter((todo) => {return !todo.completed}),
-    completedTodos: state => state.todos.filter((todo) => {return todo.completed})
+    completedTodos: state => state.todos.filter((todo) => {return todo.completed}),
+    totalTodos: state => state.todos
   }
 })
