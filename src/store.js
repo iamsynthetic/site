@@ -13,7 +13,8 @@ export default new Vuex.Store({
     userId: null,
     user: null,
     todos: [],
-    newTodo: ''
+    newTodo: '',
+    enableAddTodoModal: false
   },
   mutations: {
     authUser (state, userData) {

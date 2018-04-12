@@ -1,6 +1,6 @@
 <template>
     <div id="todo" class="todo-container">
-        <get-todo class="get-todo" v-show="isGetTodoVisible" @close="isGetTodoVisible=false">get</get-todo>
+        <get-todo class="get-todo" v-show="$store.state.enableAddTodoModal">get</get-todo>
         <div class="header">
             <h1>todo app</h1>
             <div class="container">
@@ -20,7 +20,7 @@
             </div>
         </div>
         <completed-todos class="completed-todo">completed</completed-todos>
-        <button id="show-modal" @click="isGetTodoVisible = !isGetTodoVisible">make todo</button>
+        <button id="show-modal" @click="$store.state.enableAddTodoModal = true">make todo</button>
         <current-todos class="current-todo">current</current-todos>
     </div>
 </template>
@@ -43,6 +43,9 @@ export default {
         completedTodos(){
             return this.$store.getters.completedTodos
         }
+    },
+    watch:{
+        
     },
     components: {
         'GetTodo': GetTodo,

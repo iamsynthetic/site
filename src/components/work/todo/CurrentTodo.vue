@@ -1,16 +1,16 @@
 <template>
     <div id="current-todos" class="container">
-        <h3 v-if="todos.length > 0">Current({{todos.length}})</h3>
+        <h3 class="text-right" v-if="todos.length > 0">{{todos.length}} items</h3>
         <ul class="list-group">
             <div v-model="todos">
                 <draggable :options="{handle: '.dragger'}">
-                    <li class="list-group-item dragger" v-for="todo in todos" @mouseover="mouseoverButton" @mouseout="mouseoutButton">
+                    <li class="list-group-item dragger" v-for="todo in todos">
                         {{todo.body}}
                         <div class="btn-group">
-                            <button class="btn btn-default btn-sm" type="button" @click="edit(todo)">
+                            <button class="btn btn-default btn-sm" @mouseover="mouseoverButton" @mouseout="mouseoutButton" @click="edit(todo)">
                                 <span class="glyphicon glyphicon-edit"></span> Edit
                             </button>
-                            <button class="btn btn-default btn-sm" type="button" @click="complete(todo)">
+                            <button class="btn btn-default btn-sm" @click="complete(todo)">
                                 <span class="glyphicon glyphicon-ok-circle"></span> Complete
                             </button>
                             <button class="btn btn-default btn-sm" type="button" @click="remove(todo)">
@@ -38,7 +38,9 @@ export default {
     },
     methods: {
         edit(todo){
+            // this.$store.dispatch('addTodo')
             this.$store.dispatch('editTodo', todo)
+            this.$store.state.enableAddTodoModal = true
         },
         complete(todo){
             this.$store.dispatch('completeTodo', todo)
@@ -74,7 +76,8 @@ export default {
 
     .btn-group{
         float: right;
-    },
+    }
+
     .dragger{
         cursor: pointer;
     }

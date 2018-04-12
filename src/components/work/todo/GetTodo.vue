@@ -1,5 +1,10 @@
 <template>
     <div id="get-todo" class="container">
+        <!-- <input class="form-control"
+               :value="newTodo"
+               @change="getTodo"
+               placeholder="I need to...">
+        <button class="btn btn-primary" @click="addTodo">Add Todo</button> -->
         <div class="modal-container">
             <input type="text" class="form-control" :value="newTodo" @change="getTodo" placeholder="I need to...">
             <button class="btn btn-primary" @click="addTodo">Add Todo</button>
@@ -16,7 +21,7 @@ export default {
       addTodo(){
           this.$store.dispatch('addTodo')
           this.$store.dispatch('clearTodo')
-          this.$emit('close')
+          this.$store.state.enableAddTodoModal = false
       }
   },
   computed:{
