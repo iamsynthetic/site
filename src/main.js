@@ -6,12 +6,18 @@ import Sortable from 'vue-sortable'
 import router from './router'
 import firebase from 'firebase'
 import store from './store'
-
+import 'vue-awesome/icons'
 import BootstrapVue from 'bootstrap-vue'
+
+import Icon from 'vue-awesome/components/Icon.vue'
+Vue.component('icon', Icon)
 
 Vue.use(BootstrapVue)
 Vue.use(Vuelidate)
 Vue.use(Sortable)
+
+
+
 
 axios.defaults.baseURL = 'https://vuejs-axios-ee86c.firebaseio.com/'
 // axios.defaults.headers.common['Authorization'] = 'fasfdsa'

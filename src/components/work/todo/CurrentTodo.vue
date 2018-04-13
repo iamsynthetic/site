@@ -4,17 +4,17 @@
         <ul class="list-group">
             <div v-model="todos">
                 <draggable :options="{handle: '.dragger'}">
-                    <li class="list-group-item dragger" v-for="todo in todos">
+                    <li class="list-group-item dragger" v-for="todo in todos" @mouseover.self="mouseoverListitem" @mouseout.self="mouseoutListitem">
                         {{todo.body}}
                         <div class="btn-group">
-                            <button class="btn btn-default btn-sm" @mouseover="mouseoverButton" @mouseout="mouseoutButton" @click="edit(todo)">
-                                <span class="glyphicon glyphicon-edit"></span> Edit
+                            <button class="button-icon-1 btn btn-default btn-sm" @mouseover="mouseoverButton" @mouseout="mouseoutButton" @click="edit(todo)">
+                                <icon class="test" name="edit"></icon>
                             </button>
-                            <button class="btn btn-default btn-sm" @click="complete(todo)">
-                                <span class="glyphicon glyphicon-ok-circle"></span> Complete
+                            <button class="button-icon-2 btn btn-default btn-sm" @mouseover.native="mouseoverButton" @mouseout.native="mouseoutButton" @click="complete(todo)">
+                                <icon name="check"></icon>
                             </button>
-                            <button class="btn btn-default btn-sm" type="button" @click="remove(todo)">
-                                <span class="glyphicon glyphicon-ok-circle"></span> remove
+                            <button class="button-icon-3 btn btn-default btn-sm" @mouseover.native="mouseoverButton" @mouseout.native="mouseoutButton" @click="remove(todo)">
+                                <icon name="trash-alt"></icon>
                             </button>
                         </div>
                     </li>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import draggable from 'vuedraggable';
+import draggable from 'vuedraggable'
 
 export default {
     data(){
@@ -38,7 +38,6 @@ export default {
     },
     methods: {
         edit(todo){
-            // this.$store.dispatch('addTodo')
             this.$store.dispatch('editTodo', todo)
             this.$store.state.enableAddTodoModal = true
         },
@@ -48,14 +47,20 @@ export default {
         remove(todo){
             this.$store.dispatch('removeTodo', todo)
         },
-        mouseoverButton(e){
-            //TweenMax.to(e.target, .2, {backgroundColor:this.black, color:this.white, ease:Power2.easeIn});
+        mouseoverListitem(e){
             TweenMax.to(e.target, .2, {boxShadow: "0px 2px 7px -1px rgba(0,0,0,0.50)"});
         },
-        mouseoutButton(e){
-            //TweenMax.to(e.target, .2, {backgroundColor:this.white, ease:Power2.easeOut});
+        mouseoutListitem(e){
             TweenMax.to(e.target, .2, {boxShadow: "0px 0px 0px 0px"});
-            //TweenMax.set(e.target, {clearProps:"all"});
+        },
+        mouseoverButton(e){
+            console.log('mouseover button')
+            TweenMax.to(e.target, .2, {color:this.white, ease:Power2.easeIn});
+            TweenMax.to(".test", .2, {color:this.white, ease:Power2.easeIn});
+        },
+        mouseoutButton(e){
+            TweenMax.to(e.target, .2, {color:this.black, ease:Power2.easeOut});
+            TweenMax.to(".test", .2, {color:this.black, ease:Power2.easeOut});
         }
     },
     computed: {
@@ -80,5 +85,29 @@ export default {
 
     .dragger{
         cursor: pointer;
+    }
+    .button-icon-1{
+        width:100%;
+        height:100%;
+        color:red;
+    }
+    .button-icon-2{
+        width:100%;
+        height:100%;
+        //background-color:red;
+    }
+    .button-icon-3{
+        width:100%;
+        height:100%;
+        //background-color:red;
+    }
+    .fa-icon {
+        width: auto;
+        height: 1rem; /* or any other relative font sizes */
+        line-height:20px;
+        background-color:blue;
+        /* You would have to include the following two lines to make this work in Safari */
+        max-width: 100%;
+        max-height: 100%;
     }
 </style>
