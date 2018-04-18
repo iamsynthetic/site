@@ -5,17 +5,13 @@
             <div v-model="todos">
                 <draggable :options="{handle: '.dragger'}">
                     <li class="list-group-item dragger" v-for="todo in todos" @mouseover.self="mouseoverListitem" @mouseout.self="mouseoutListitem">
-                        {{todo.body}}
-                        <div class="btn-group">
-                            <button class="button-icon-1 btn btn-default btn-sm" @mouseover="mouseoverButton" @mouseout="mouseoutButton" @click="edit(todo)">
-                                <icon class="test" name="edit"></icon>
-                            </button>
-                            <button class="button-icon-2 btn btn-default btn-sm" @mouseover.native="mouseoverButton" @mouseout.native="mouseoutButton" @click="complete(todo)">
-                                <icon name="check"></icon>
-                            </button>
-                            <button class="button-icon-3 btn btn-default btn-sm" @mouseover.native="mouseoverButton" @mouseout.native="mouseoutButton" @click="remove(todo)">
-                                <icon name="trash-alt"></icon>
-                            </button>
+                        <div class="row">
+                            <div class="col-8 item-title">{{todo.body}}</div>
+                            <div class="col-4 btn-group">
+                                <button id="btn1" class="btn btn-default btn-sm" @mouseover="mouseoverButton" @mouseout="mouseoutButton" @click="edit(todo)"><icon id="icon1" class="icon1" name="edit"></icon></button>
+                                <button id="btn2" class="btn btn-default btn-sm ml-1 mr-1" @mouseover="mouseoverButton" @mouseout="mouseoutButton" @click="complete(todo)"><icon id="icon2" class="icon2" name="check"></icon></button>
+                                <button id="btn3" class="btn btn-default btn-sm ml-1 mr-1" @mouseover="mouseoverButton" @mouseout="mouseoutButton" @click="remove(todo)"><icon id="icon3" class="icon3" name="trash-alt"></icon></button>
+                            </div>
                         </div>
                     </li>
                 </draggable>
@@ -32,8 +28,11 @@ export default {
       return {
         red: '#ff5063',
         black: '#000000',
-        lightgrey:'#f4fafa',
-        white: '#ffffff'
+        graylighter:'#ededed',
+        white: '#ffffff',
+        btn1: "#btn1",
+        btn2: "#btn2",
+        btn3: "#btn3",
       }
     },
     methods: {
@@ -54,13 +53,48 @@ export default {
             TweenMax.to(e.target, .2, {boxShadow: "0px 0px 0px 0px"});
         },
         mouseoverButton(e){
-            console.log('mouseover button')
-            TweenMax.to(e.target, .2, {color:this.white, ease:Power2.easeIn});
-            TweenMax.to(".test", .2, {color:this.white, ease:Power2.easeIn});
+            //e.target.id doesn't seem to work with icons above, have to
+            //explicitly say "this id" when animating.
+            console.log(e.target)
+            switch(e.target.id){
+                case "btn1":
+                    TweenMax.to(btn1, .2, {color:this.red, ease:Power2.easeIn});
+                    break
+                case "icon1":
+                    TweenMax.to("#icon1", .2, {color:this.red, ease:Power2.easeIn});
+                break
+                case "btn2":
+                    TweenMax.to(btn2, .2, {color:this.red, ease:Power2.easeIn});
+                break
+                case "icon2":
+                    TweenMax.to("#icon2", .2, {color:this.red, ease:Power2.easeIn});
+                break
+                case "btn3":
+                    TweenMax.to(btn3, .2, {color:this.red, ease:Power2.easeIn});
+                break
+                case "icon3":
+                    TweenMax.to("#icon3", .2, {color:this.red, ease:Power2.easeIn});
+                break
+            }
         },
         mouseoutButton(e){
-            TweenMax.to(e.target, .2, {color:this.black, ease:Power2.easeOut});
-            TweenMax.to(".test", .2, {color:this.black, ease:Power2.easeOut});
+            //to get the desired mouseout effect, need to add the animation for both
+            //icon and button inside the button mouseout
+            console.log(e.target)
+            switch(e.target.id){
+                case "btn1":
+                    TweenMax.to(btn1, .2, {color:this.graylighter, ease:Power2.easeOut});
+                    TweenMax.to("#icon1", .2, {color:this.graylighter, ease:Power2.easeOut});
+               break
+                case "btn2":
+                    TweenMax.to(btn2, .2, {color:this.graylighter, ease:Power2.easeOut});
+                    TweenMax.to("#icon2", .2, {color:this.graylighter, ease:Power2.easeOut});
+                break;
+                case "btn3":
+                    TweenMax.to(btn3, .2, {color:this.graylighter, ease:Power2.easeOut});
+                    TweenMax.to("#icon3", .2, {color:this.graylighter, ease:Power2.easeOut});
+                break
+            }
         }
     },
     computed: {
@@ -79,6 +113,12 @@ export default {
     @import '../../../styles/custom-bootstrap.scss';
     @import '../../../../node_modules/bootstrap/scss/bootstrap.scss';
 
+    .container {
+        background-color:$todo-charcoal;
+    }
+    .item-title {
+        padding-left:14px;
+    }
     .btn-group{
         float: right;
     }
@@ -86,26 +126,24 @@ export default {
     .dragger{
         cursor: pointer;
     }
-    .button-icon-1{
-        width:100%;
-        height:100%;
-        color:red;
+    .btn {
+        //background-color: blue; /* Blue background */
+        border: none; /* Remove borders */
+        color: $gray-light; /* White text */
+        //padding:4px 8px 2px 8px;
+        //padding: 4px 8px; /* Some padding */
+        font-size: 16px; /* Set a font size */
+        cursor: pointer; /* Mouse pointer on hover */
     }
-    .button-icon-2{
-        width:100%;
-        height:100%;
-        //background-color:red;
-    }
-    .button-icon-3{
-        width:100%;
-        height:100%;
-        //background-color:red;
-    }
+    // .btn:hover {
+    //     background-color: RoyalBlue;
+    // }
     .fa-icon {
         width: auto;
-        height: 1rem; /* or any other relative font sizes */
-        line-height:20px;
-        background-color:blue;
+        height: 1.2rem; /* or any other relative font sizes */
+        
+        //line-height:20px;
+        //background-color:blue;
         /* You would have to include the following two lines to make this work in Safari */
         max-width: 100%;
         max-height: 100%;

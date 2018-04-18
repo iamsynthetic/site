@@ -2,12 +2,12 @@
     <div id="todo" class="todo-container">
         <get-todo class="get-todo" v-show="$store.state.enableAddTodoModal">get</get-todo>
         <div class="header">
-            <h1>todo app</h1>
+            <h1>ALL TASKS</h1>
             <div class="container">
                 <div class="row h-100">
                     <div class="col-4 colbg">
                         <h3 v-if="totalTodos.length > 0">
-                            {{completedTodos.length}} / {{totalTodos.length}}
+                            <span class="completed-todos-finished">{{completedTodos.length}}</span> <span class="completed-todos-total">/ {{totalTodos.length}}</span>
                         </h3>
                         <h3 v-else>
                             no more todos!
@@ -63,25 +63,38 @@ export default {
         width:375px;
         height:667px;
         margin: auto;
-        background-color:$white;
+        background-color:$todo-charcoal;
     }
 
     .header{
         height:140px;
-        background-color:$gray-light;
+        //background-color:$todo-charcoal;
     }
 
     .header h1 {
         width:100%;
         height:50px;
         margin:auto;
-        background-color:aqua;
+        background-color:$todo-charcoal;
+        color: $todo-light-cream;
         text-align:center;
-        padding-top:5px;
+        padding-top:12px;
+        font-family: "Roboto", Sans-Serif;
+        font-size:24px;
     }
 
     .container {
         height:90px;
+    }
+    .completed-todos-finished{
+        color: $todo-light-cream;
+        font-family: "Roboto", Sans-serif;
+        font-size: 30px;
+    }
+    .completed-todos-total{
+        color: $todo-light-charcoal;
+        font-family: "Roboto", Sans-serif;
+        font-size: 16px;
     }
     .colbg{
         margin:auto;

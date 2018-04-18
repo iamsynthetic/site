@@ -34,13 +34,16 @@ export default {
 
 <style lang="scss" scoped>
 
+    @import '../../../styles/custom-bootstrap.scss';
+    @import '../../../../node_modules/bootstrap/scss/bootstrap.scss';
+    
     .container{
         position: fixed;
         z-index: 9998;
         width: 375px;
         height: 667px;
         margin: auto;
-        background-color: rgba(0, 0, 0, .5);
+        background-color:$todo-charcoal;
         transition: opacity .3s ease;
     }
 
