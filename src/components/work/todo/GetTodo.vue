@@ -20,6 +20,7 @@ export default {
       },
       addTodo(){
           this.$store.dispatch('addTodo')
+          this.$store.dispatch('storeUserTodos', e.target.value)
           this.$store.dispatch('clearTodo')
           this.$store.state.enableAddTodoModal = false
       }
@@ -43,7 +44,7 @@ export default {
         width: 375px;
         height: 667px;
         margin: auto;
-        background-color:$todo-charcoal;
+        background-color:$todo-dark-purple;
         transition: opacity .3s ease;
     }
 

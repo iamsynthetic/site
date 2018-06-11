@@ -2,25 +2,53 @@
     <div id="todo" class="todo-container">
         <get-todo class="get-todo" v-show="$store.state.enableAddTodoModal">get</get-todo>
         <div class="header">
-            <h1>ALL TASKS</h1>
             <div class="container">
-                <div class="row h-100">
-                    <div class="col-4 colbg">
-                        <h3 v-if="totalTodos.length > 0">
+                <div class="all-tasks-group row h-100">
+                    <div class="col-6">
+                       <h1 class="all-tasks-title">ALL TASKS</h1>
+                       <h5 class="todays-date">{{ new Date() | moment("dddd MMMM D") }}</h5>
+                    </div>
+                    <div class="col-6">
+                        <img class="profile-img float-right" src="../../../images/profile_img2.jpg">
+                        <!-- <h2 class="float-right">Michelle Brule</h2> -->
+                    </div>
+                </div>
+                <div class="row h-50">
+                    <div class="col-6">
+                       <h3>
+                            <!-- <span class="days-ago">3 DAYS AGO</span> -->
+                            <!-- <span class="todays-date">{{ new Date() | moment("dddd MMMM D") }}</span> -->
+                        </h3>
+                    </div>
+                    <div class="col-6">
+                       <h3 class="float-right">
+                            <span class="completed-todos-finished">{{completedTodos.length}}</span> <span class="completed-todos-total">/ {{totalTodos.length}}</span>
+                        </h3>
+                    </div>
+                        <!-- <h3>
+                            <span class="completed-todos-finished">3 DAYS AGO</span>
+                        </h3>
+                        <h3>
+                            <span class="completed-todos-finished">{{completedTodos.length}}</span> <span class="completed-todos-total">/ {{totalTodos.length}}</span>
+                        </h3> -->
+                        <!-- <h3 v-if="totalTodos.length > 0">
                             <span class="completed-todos-finished">{{completedTodos.length}}</span> <span class="completed-todos-total">/ {{totalTodos.length}}</span>
                         </h3>
                         <h3 v-else>
-                            no more todos!
-                        </h3>
-                    </div>
-                    <div class="col-sm colbg2">
-                       two
+                            100% complete
+                        </h3> -->
+                </div>
+                <div class="row h-50">
+                    <div class="col-12 mx-auto">
+                        <div class="text-center">
+                            <button id="show-modal" class="main-button" @click="$store.state.enableAddTodoModal = true">CREATE TODO</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <completed-todos class="completed-todo">completed</completed-todos>
-        <button id="show-modal" @click="$store.state.enableAddTodoModal = true">make todo</button>
+        <!-- <completed-todos class="completed-todo">completed</completed-todos> -->
+        <!-- <button id="show-modal" class="main-button" @click="$store.state.enableAddTodoModal = true">CREATE TODO</button> -->
         <current-todos class="current-todo">current</current-todos>
     </div>
 </template>
@@ -63,48 +91,85 @@ export default {
         width:375px;
         height:667px;
         margin: auto;
-        background-color:$todo-charcoal;
+        background-color:$todo-dark-purple;
     }
 
     .header{
-        height:140px;
+        height:200px;
         //background-color:$todo-charcoal;
     }
 
-    .header h1 {
+    .all-tasks-title {
         width:100%;
-        height:50px;
+        //height:38px;
         margin:auto;
-        background-color:$todo-charcoal;
-        color: $todo-light-cream;
-        text-align:center;
-        padding-top:12px;
+        background-color:$todo-dark-purple;
+        color: $todo-grey;
+        padding-top:8px;
+        padding-bottom:3px;
         font-family: "Roboto", Sans-Serif;
-        font-size:24px;
+        font-size:18px;
+        letter-spacing:2px;
     }
-
     .container {
         height:90px;
     }
-    .completed-todos-finished{
-        color: $todo-light-cream;
+    .all-tasks-group{
+        padding-top:14px;
+    }
+    .profile-img{
+        border-radius:8px;
+    }
+    .todays-date{
+        color: $todo-dark-grey;
         font-family: "Roboto", Sans-serif;
-        font-size: 30px;
+        font-size: 14px;
+    }
+    .completed-todos-finished{
+        color: $todo-grey;
+        font-family: "Roboto", Sans-serif;
+        font-size: 24px;
     }
     .completed-todos-total{
-        color: $todo-light-charcoal;
+        color: $todo-dark-grey;
         font-family: "Roboto", Sans-serif;
-        font-size: 16px;
+        font-size: 24px;
+    }
+    .main-button{
+        background: $todo-blue;
+        // background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+        // background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+        // background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+        // background-image: -o-linear-gradient(top, #3498db, #2980b9);
+        // background-image: linear-gradient(to bottom, #3498db, #2980b9);
+        -webkit-border-radius: 20;
+        -moz-border-radius: 20;
+        border-radius: 20px;
+        font-family: Arial;
+        // color: #ffffff;
+        font-size: 10px;
+        padding: 8px 40px 8px 40px;
+        text-decoration: none;
+        border-style: none;
+    }
+    .main-button:hover {
+        background: #3cb0fd;
+        // background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+        // background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+        // background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+        // background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+        // background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+        text-decoration: none;
     }
     .colbg{
         margin:auto;
         text-align:center;
-        background-color:$purple;
+        background-color:$todo-dark-purple;
     }
     .colbg2{
         margin:auto;
         text-align:center;
-        background-color:$orange;
+        background-color:$todo-dark-purple;
     }
 
 </style>

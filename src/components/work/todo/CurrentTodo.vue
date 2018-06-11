@@ -26,9 +26,9 @@ import draggable from 'vuedraggable'
 export default {
     data(){
       return {
-        red: '#ff5063',
+        red: '#c2474c',
         black: '#000000',
-        graylighter:'#ededed',
+        graylighter:'#a7adb6',
         white: '#ffffff',
         btn1: "#btn1",
         btn2: "#btn2",
@@ -114,7 +114,7 @@ export default {
     @import '../../../../node_modules/bootstrap/scss/bootstrap.scss';
 
     .container {
-        background-color:$todo-charcoal;
+        background-color:$todo-dark-purple;
     }
     .item-title {
         padding-left:14px;
@@ -129,7 +129,7 @@ export default {
     .btn {
         //background-color: blue; /* Blue background */
         border: none; /* Remove borders */
-        color: $gray-light; /* White text */
+        color: $todo-red; /* White text */
         //padding:4px 8px 2px 8px;
         //padding: 4px 8px; /* Some padding */
         font-size: 16px; /* Set a font size */

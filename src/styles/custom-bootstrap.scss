@@ -37,12 +37,22 @@ $warning: $orange;
 $danger: $red;
 
 //todo colors
-$todo-cream: #FFFFCA;
-$todo-light-cream: #FCFBF1;
-$todo-red: #F7565A;
-$todo-blue: #30C4DB;
-$todo-light-charcoal: #34373B;
-$todo-charcoal: #2A2C2F; 
+// $todo-cream: #FFFFCA;
+// $todo-light-cream: #FCFBF1;
+// $todo-red: #F7565A;
+// $todo-blue: #30C4DB;
+// $todo-light-charcoal: #34373B;
+// $todo-charcoal: #2A2C2F; 
+$todo-dark-purple: #272a37; //base
+$todo-purple: #292c3d;      //base variant
+$todo-blue: #557afc;        //buttons
+$todo-dark-blue: #3a3e4b;   //button bg variant
+$todo-grey: #a7adb6;        //text
+$todo-dark-grey: #484c57;   //inactive text
+$todo-green: #86dc33;       //accent
+$todo-orange: #edb652;      //accent
+$todo-red: #c2474c;         //accent
+
 
 // Override button colors
 $btn-info-color: darken($info, 45);

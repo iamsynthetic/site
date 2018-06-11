@@ -8,6 +8,8 @@ import firebase from 'firebase'
 import store from './store'
 import 'vue-awesome/icons'
 import BootstrapVue from 'bootstrap-vue'
+import Moment from 'vue-moment'
+//import vueScrollbar from 'vue-scrollbar';
 
 import Icon from 'vue-awesome/components/Icon.vue'
 Vue.component('icon', Icon)
@@ -15,7 +17,8 @@ Vue.component('icon', Icon)
 Vue.use(BootstrapVue)
 Vue.use(Vuelidate)
 Vue.use(Sortable)
-
+Vue.use(Moment)
+//Vue.use(vueScrollbar)
 
 
 
@@ -34,6 +37,7 @@ const resInterceptor = axios.interceptors.response.use(res => {
 
 axios.interceptors.request.eject(reqInterceptor)
 axios.interceptors.response.eject(resInterceptor)
+
 
 new Vue({
   el: '#app',

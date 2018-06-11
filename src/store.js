@@ -171,6 +171,13 @@ export default new Vuex.Store({
     },
     clearTodo({commit}){
       commit('CLEAR_TODO')
+    },
+    storeUserTodos({commit, dispatch}, storeTodos){
+      localStorage.setItem('todosVueJS', storeTodos)
+      console.log('storetodos ' + storeTodos)
+    },
+    getUserTodos ({commit}) {
+      const todosVueJS = localStorage.getItem('todosVueJS')
     }
   },
   getters: {

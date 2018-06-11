@@ -63,7 +63,7 @@
 
   #dashboard {
     width:100%;
-    height:100px;
+    height:100px; 
   }
   
   .fill{

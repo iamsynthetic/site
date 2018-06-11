@@ -16,13 +16,13 @@
               <router-link @click="activate(1)" @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="nav-link header-button" to="/home">Home</router-link>
             </li>
             <li v-if="auth">
-              <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="nav-link header-button" to="/about">About</router-link>
+              <router-link @click="activate(1)" @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="nav-link header-button" to="/about">About</router-link>
             </li>
             <li v-if="auth">
-              <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="nav-link header-button" to="/work">Work</router-link>
+              <router-link @click="activate(1)" @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="nav-link header-button" to="/work">Work</router-link>
             </li>
             <li v-if="auth">
-              <router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="nav-link header-button" to="/dashboard">Dashboard</router-link>
+              <router-link @click="activate(1)" @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" class="nav-link header-button" to="/dashboard">Dashboard</router-link>
             </li>
             <li v-if="auth">
               <button @mouseover="mouseoverButton" @mouseout="mouseoutButton" @click="onLogout" class="logout nav-link">Logout</button>
