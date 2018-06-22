@@ -1,89 +1,98 @@
 <template>
-  <div id="work" class="work-container">
-      <h1>WORK PAGE</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>A</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
-      <div>Smooth and different scroll speeds</div>
-      <h1>B</h1>
+  <div id="menuslider" class="menuslider-container">
+    <div class="cta">
+      <div id="slider" class="slider" @mousedown="startDrag" @mouseup="stopDrag" @mousemove="mouseMoving" @mouseLeave="stopDrag">
+        <div class="slider-cards" :style="`transform: translate3d(${cardsX}px,0,0)`">
+          <div class="slider-card" v-for="(slide, index) in slides" :class="randomClass(index)" @mouseover="sliderCardOver" @mouseout="sliderCardOut">
+            <div class="square"></div>
+            <div class="img-container" :id="slide.title" @mouseover.prevent>
+              <img class="slider-card-img" :src="slide.image" :alt="slide.title" draggable="false" @mouseover.prevent/>
+            </div>
+            <div class="slider-info" :id="slide.title" @mouseover.prevent>
+              <h1 @mouseover.prevent>{{slide.title}}</h1>
+              <p @mouseover.prevent>{{slide.description}}</p>
+              <button class="slider-button" @mouseover.prevent>Learn More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slider-bg-container" ref="sliderbgcontainerref">
+        <div class="slider-bgs">
+          <div class="slider-bg-img" ref="sliderbgimgref" v-for="(slide, index) in slides" :class="randomClass(index)">
+            <div class="slider-img-container">
+              <img class="slider-img" :src="slide.image" :alt="slide.title" draggable="false" @mouseover.prevent/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Todo from './todo/Todo.vue'
 
 export default {
-
-  created(){
-     /*
-      // Scrolling Core
-      animationTime    : 400, // [ms]
-      stepSize         : 100, // [px]
-
-      // Acceleration
-      accelerationDelta : 50,  // 50
-      accelerationMax   : 3,   // 3
-
-      // Keyboard Settings
-      keyboardSupport   : true,  // option
-      arrowScroll       : 50,    // [px]
-
-      // Pulse (less tweakable)
-      // ratio of "tail" to "acceleration"
-      pulseAlgorithm   : true,
-      pulseScale       : 4,
-      pulseNormalize   : 1,
-
-      // Other
-      touchpadSupport   : false, // ignore touchpad by default
-      fixedBackground   : true, 
-      excluded          : ''    
-  */ 
-    this.$SmoothScrollWebSitesOptions = { keyboardSupport: false } 
-    this.$SmoothScrollWebSites({ stepSize: 30, pulseAlgorithm: true, pulseScale: 1, pulseNormalize: 1, });
-    
-  },
   data(){
     return {
       red: '#ff5063',
       black: '#000000',
       basewhite: '#f5f5f5',
-      grey: 'c5c5c5'
+      grey: 'c5c5c5',
+
+      slides: [
+        {
+          title: 'Daredevil',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis condimentum libero eget risus sodales cursus nec sed velit. Phasellus maximus luctus tellus id fermentum. Nulla facilisi.',
+          image: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/jxP4oHtcksDHHvWqMq9tW6TS7Lk.jpg'
+        },
+        {
+          title: 'Jessica Jones',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis condimentum libero eget risus sodales cursus nec sed velit. Phasellus maximus luctus tellus id fermentum. Nulla facilisi.',
+          image: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/8a7e2GNpMnjI2hgRZH3jq2c7ffv.jpg'
+        },
+        {
+          title: 'Luke Cage',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis condimentum libero eget risus sodales cursus nec sed velit. Phasellus maximus luctus tellus id fermentum. Nulla facilisi.',
+          image: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/9nWZZ1ghE0LuXEWJi7QjCymHygi.jpg'
+        },
+        {
+          title: 'Iron Fist',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis condimentum libero eget risus sodales cursus nec sed velit. Phasellus maximus luctus tellus id fermentum. Nulla facilisi.',
+          image: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/nv4nLXbDhcISPP8C1mgaxKU50KO.jpg'
+        },
+        {
+          title: 'The defenders',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis condimentum libero eget risus sodales cursus nec sed velit. Phasellus maximus luctus tellus id fermentum. Nulla facilisi.',
+          image: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/49XzINhH4LFsgz7cx6TOPcHUJUL.jpg'
+        },
+        {
+          title: 'Arrow',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis condimentum libero eget risus sodales cursus nec sed velit. Phasellus maximus luctus tellus id fermentum. Nulla facilisi.',
+          image: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/mo0FP1GxOFZT4UDde7RFDz5APXF.jpg'
+        },
+        {
+          title: 'The Flash',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis condimentum libero eget risus sodales cursus nec sed velit. Phasellus maximus luctus tellus id fermentum. Nulla facilisi.',
+          image: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/lUFK7ElGCk9kVEryDJHICeNdmd1.jpg'
+        },
+        {
+          title: 'Gotham',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis condimentum libero eget risus sodales cursus nec sed velit. Phasellus maximus luctus tellus id fermentum. Nulla facilisi.',
+          image: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/5tSHzkJ1HBnyGdcpr6wSyw7jYnJ.jpg'
+        },
+        {
+          title: 'Legends of Tomorrow',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis condimentum libero eget risus sodales cursus nec sed velit. Phasellus maximus luctus tellus id fermentum. Nulla facilisi.',
+          image: 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/qEobyOhOTSse59ym0gIxsQgcRGZ.jpg'
+        }
+      ],
+      selectedIndex: 0,
+      dragging: false,
+      mousedownawhile: false,
+      timeoutid: 0,
+      initialMouseX: 0,
+      initialCardsX: 0,
+      cardsX: 0
     }
   },
 
@@ -214,8 +223,13 @@ export default {
       TweenMax.to('.slider-cards', 1, {x:(0 - dawidth), ease:Expo.easeInOut});
     }
   },
-  components:{
-    'Todo': Todo
+  computed: {
+    selectedSlide () {
+      return this.slides[this.selectedIndex]
+    }
+  },
+  watch: {
+    moving:true
   }
 }
 </script>
@@ -228,30 +242,6 @@ export default {
   .work-container {
     width: 100%;
     height:50%;
-    //height:3000px;
-  }
-
-  #black{
-    position: relative;
-    top:300px;
-    left: 20px;
-    height: 100px;
-    width: auto;
-    font-size:6vh;
-    color: black;
-    z-index:2;
-  }
-  #A, #B{
-    position: absolute;
-    top:100px;
-    left:50px;
-    font-size:300px;
-    margin:0;
-    color:grey;
-    z-index:1;
-  }
-  #B{
-    top:330px;
   }
 
   h1 {

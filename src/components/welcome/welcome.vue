@@ -34,7 +34,7 @@ export default {
   @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
   #welcome {
-    width: 80%;
+    width: 100%;
     margin: auto;
   }
 

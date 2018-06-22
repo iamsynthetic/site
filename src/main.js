@@ -11,6 +11,9 @@ import BootstrapVue from 'bootstrap-vue'
 import Moment from 'vue-moment'
 //import vueScrollbar from 'vue-scrollbar';
 
+import vueSmoothScrollWebsites from 'vue-smoothscroll-websites'
+Vue.use(vueSmoothScrollWebsites)
+
 import Icon from 'vue-awesome/components/Icon.vue'
 Vue.component('icon', Icon)
 
