@@ -38,10 +38,12 @@
           
           <div class="col-md-8 col-lg-6 sidenav-images">
             <!-- <div class="slider-card" v-for="(slide, index) in slides" :class="randomClass(index)"> -->
-            <div class="img-container" :id="slides[0].title">
+            <div class="img-container" :id="slides[0].title" @mouseover="sliderCardOver" @mouseout="sliderCardOut">
+              <p :id="slides[0].id" class="slider-card-txt">{{ slides[0].title }}</p>
               <img class="slider-card-img" :src="slides[0].image" :alt="slides[0].title"/>
             </div>
-            <div class="img-container" :id="slides[1].title">
+            <div class="img-container" :id="slides[1].title" @mouseover="sliderCardOver" @mouseout="sliderCardOut">
+              <p :id="slides[1].id" class="slider-card-txt">{{ slides[1].title }}</p>
               <img class="slider-card-img" :src="slides[1].image" :alt="slides[1].title"/>
             </div>
           </div>
@@ -49,20 +51,20 @@
           <div class="col-sm-12 col-md-4 col-lg-6 sidenav-links sidenav-desktop">
             <a href="javascript:void(0)" class="closebtn" @mouseover="mouseoverTextlink" @mouseout="mouseoutTextlink" @click="closeNav">&times;</a>
             <ul>
-              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" to="/home">Home</router-link></li>
-              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" to="/about">About</router-link></li>
-              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" to="/work">Work</router-link></li>
-              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" to="/contact">Contact</router-link></li>
+              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" @click.native="closeNav" to="/">Home</router-link></li>
+              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" @click.native="closeNav" to="/about">About</router-link></li>
+              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" @click.native="closeNav" to="/work">Work</router-link></li>
+              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" @click.native="closeNav" to="/contact">Contact</router-link></li>
             </ul>
           </div>
 
            <div class="col-sm-12 col-md-12 sidenav-links sidenav-mobile">
             <a href="javascript:void(0)" class="closebtn" @mouseover="mouseoverTextlink" @mouseout="mouseoutTextlink" @click="closeNav">&times;</a>
             <ul>
-              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" to="/home">Home</router-link></li>
-              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" to="/about">About</router-link></li>
-              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" to="/work">Work</router-link></li>
-              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" to="/contact">Contact</router-link></li>
+              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" @click.native="closeNav" to="/">Home</router-link></li>
+              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" @click.native="closeNav" to="/about">About</router-link></li>
+              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" @click.native="closeNav" to="/work">Work</router-link></li>
+              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" @click.native="closeNav" to="/contact">Contact</router-link></li>
             </ul>
           </div>
 
@@ -93,12 +95,14 @@
       return {
         slides: [
         {
-          title: 'computer on desk',
+          title: 'computer desk',
+          id: 'computer',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis condimentum libero eget risus sodales cursus nec sed velit. Phasellus maximus luctus tellus id fermentum. Nulla facilisi.',
           image: '../../src/images/computer_on_desk.jpg'
         },
         {
-          title: 'comics',
+          title: 'comic rack',
+          id: 'comics',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis condimentum libero eget risus sodales cursus nec sed velit. Phasellus maximus luctus tellus id fermentum. Nulla facilisi.',
           image: '../../src/images/comics.jpg'
         }
@@ -194,6 +198,22 @@
       },
       mouseoutTextlink(e){
         TweenMax.to(e.target, .2, {color:this.black, ease:Power2.easeIn});
+      },
+      sliderCardOver(e){
+        console.log(e)
+        console.log('e.path[1].attributes[1].nodeValue); is: ' + e.path[1].attributes[1].nodeValue);
+        console.log('e.path[1].children[0].attributes[1].nodeValue is: ' + e.path[1].children[0].attributes[1].nodeValue);
+        //var thetxt = '#' + e.path[1].attributes[1].nodeValue;
+        var thetxt = '#' + e.path[1].children[0].attributes[1].nodeValue;
+
+        TweenMax.to(e.target, .7, {scaleX:1.05, scaleY:1.05, ease:Power3.easeInOut});
+        TweenMax.to(thetxt, .5, {autoAlpha:1});
+      },
+      sliderCardOut(e){
+         var thetxt = '#' + e.path[1].children[0].attributes[1].nodeValue;
+
+        TweenMax.to(e.target, .7, {scaleX:1, scaleY:1, ease:Power3.easeInOut});
+        TweenMax.to(thetxt, .5, {autoAlpha:0});
       }
     }
   }
@@ -369,6 +389,18 @@
     height:50vh;
     overflow:hidden;
     z-index:1;
+    position:relative;
+  }
+  .slider-card-txt{
+    position:absolute;
+    z-index:20;
+    //float:left;
+    text-align:center;
+    width:100%;
+    top:50%;
+    opacity:0;
+    color:$base_white;
+    font-size:20px;
   }
   .slider-card img {
     width: 100%;

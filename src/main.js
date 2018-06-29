@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import axios from 'axios'
 import Vuelidate from 'vuelidate'
-import Sortable from 'vue-sortable'
+// import Sortable from 'vue-sortable'
 import router from './router'
 import firebase from 'firebase'
 import store from './store'
@@ -17,9 +17,10 @@ Vue.use(vueSmoothScrollWebsites)
 import Icon from 'vue-awesome/components/Icon.vue'
 Vue.component('icon', Icon)
 
+
 Vue.use(BootstrapVue)
 Vue.use(Vuelidate)
-Vue.use(Sortable)
+// Vue.use(Sortable)
 Vue.use(Moment)
 //Vue.use(vueScrollbar)
 
@@ -45,6 +46,6 @@ axios.interceptors.response.eject(resInterceptor)
 new Vue({
   el: '#app',
   router,
-  store,
+  store,  
   render: h => h(App)
 })

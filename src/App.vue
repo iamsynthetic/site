@@ -5,7 +5,6 @@
             <transition name="slide" mode="out-in">
                 <router-view class="content-wrapper"></router-view>
             </transition>
-            <app-footer class="footer clearfix"></app-footer>
         </div>
     </div>
 </template>

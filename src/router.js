@@ -9,14 +9,18 @@ import SignupPage from './components/auth/signup.vue'
 import SigninPage from './components/auth/signin.vue'
 import HomePage from './components/home/home.vue'
 import WorkPage from './components/work/work.vue'
+import AboutPage from './components/about/about.vue'
+import ContactPage from './components/contact/contact.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', component: WelcomePage },
+  { path: '/', component: HomePage },
   { path: '/signup', component: SignupPage },
   { path: '/signin', component: SigninPage },
   { path: '/work', component: WorkPage},
+  { path: '/about', component: AboutPage},
+  { path: '/contact', component: ContactPage},
   {
     path: '/dashboard',
     component: DashboardPage,

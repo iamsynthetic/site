@@ -1,10 +1,48 @@
 <template>
-  <div class="row mx-0">
-  <header id="footer">
-    <div v-if="auth">
+  <div id="footer">
+    <!-- <div v-if="auth">
       <div class="logout">Welcome <span class="nickname"> {{ user.nickname }}</span></div>
+    </div> -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <div class="float-left">
+            <p>&#169; 2018 ***** - All Rights Reserved.</p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <div class="ondesktop float-right">
+            <ul>
+              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" @click.native="closeNav" to="/">SITEMAP</router-link></li>
+              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" @click.native="closeNav" to="/contact">CONTACT</router-link></li>
+            </ul>
+          </div>
+          <div class="onmobile">
+            <ul>
+              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" @click.native="closeNav" to="/">SITEMAP</router-link></li>
+              <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" @click.native="closeNav" to="/contact">CONTACT</router-link></li>
+            </ul>
+          </div>
+        </div>
+
+        </div>
     </div>
-  </header>
+
+<!--
+    <div class="col-12">
+    <div class="pull-left">
+      <p>&#169; 2018 ***** - All Rights Reserved.</p>
+    </div>
+    </div>
+    <div class="col-12">
+    <div class="pull-right">
+      <ul>
+        <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" @click.native="closeNav" to="/">SITEMAP</router-link></li>
+        <li><router-link @mouseover.native="mouseoverTextlink" @mouseout.native="mouseoutTextlink" @click.native="closeNav" to="/contact">CONTACT</router-link></li>
+      </ul>
+    </div>
+    </div>
+    -->
   </div>
 </template>
 
@@ -48,13 +86,14 @@
 
   #footer {
     height: 56px;
-    width:100%;
+    //width:100%;
     display: flex;
     flex-flow: row;
     justify-content: space-between;
     align-items: center;
-    background-color: $white;
+    //background-color: $white;
     padding: 15px 20px;
+    margin-bottom:10px;
   }
 
   #footer .navbar {
@@ -94,8 +133,12 @@
     align-items: center;
   }
 
-  li {
-    margin: 0 16px;
+  .ondesktop li {
+    margin-left: 32px;
+  }
+
+  .onmobile li {
+    margin-right: 16px;
   }
 
   li a {
@@ -125,6 +168,23 @@
   .nickname{
     font-weight: bold;
     color: $green;
-    
+  }
+  
+  @media only screen and (min-width: 577px) {
+    .ondesktop {
+        display:block;
+    }
+    .onmobile {
+      display:none;
+    }
+  }
+
+  @media only screen and (max-width: 576px) {
+    .ondesktop {
+        display:none;
+    }
+    .onmobile {
+      display:block;
+    }
   }
 </style>
